@@ -1,6 +1,6 @@
 // ***** App Controller *****
 // **************************
-const App = (function(ItemCtrl, UICtrl) {
+const App = (function(ItemCtrl, StorageCtrl,  UICtrl) {
     // ********** Load event listeners ********** EVENT LISTENERS **********
     const loadEventListeners = function() {
 
@@ -54,6 +54,9 @@ const App = (function(ItemCtrl, UICtrl) {
             //Add totalCalories to UI
             UICtrl.showTotalCalories(totalCalories);
 
+            // Store in localStorage
+            StorageCtrl.storeItem(newItem); 
+
             // Clear fields
             UICtrl.clearInput();
         }
@@ -103,6 +106,9 @@ const App = (function(ItemCtrl, UICtrl) {
         //Add totalCalories to UI
         UICtrl.showTotalCalories(totalCalories);
 
+        // Update local storage
+        StorageCtrl.updateItemStorage(updatedItem);
+
         UICtrl.clearEditState();
         
         e.preventDefault();
@@ -125,6 +131,9 @@ const App = (function(ItemCtrl, UICtrl) {
         //Add totalCalories to UI
         UICtrl.showTotalCalories(totalCalories);
 
+        // Delete from local storage
+        StorageCtrl.deleteItemFromStorage(currentItem.id);
+
         UICtrl.clearEditState();
 
         e.preventDefault();
@@ -142,6 +151,9 @@ const App = (function(ItemCtrl, UICtrl) {
 
         // Remove from UI
         UICtrl.removeItems();
+
+        // Clear from local storage
+        StorageCtrl.clearItemsFromStorage();
 
         // Hide Ul
         UICtrl.hideList();
@@ -174,7 +186,7 @@ const App = (function(ItemCtrl, UICtrl) {
         }
     }
     
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, StorageCtrl, UICtrl);
 
 // Initialize App
 App.init();
