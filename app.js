@@ -1,8 +1,8 @@
 // ***** App Controller *****
 // **************************
 const App = (function(ItemCtrl, UICtrl) {
-    // Load event listeners
-    const loadEventListeners = function () {
+    // ********** Load event listeners ********** EVENT LISTENERS **********
+    const loadEventListeners = function() {
 
         // Get UI selectors from UI controller
         const UISelectors = UICtrl.getSelectors()
@@ -23,6 +23,15 @@ const App = (function(ItemCtrl, UICtrl) {
 
         // Update item event
         document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);
+
+        // Delete item event
+        document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit);
+
+        // Back button event
+        document.querySelector(UISelectors.backBtn).addEventListener('click', UICtrl.clearEditState);
+
+        // Clear items event
+        document.querySelector(UISelectors.clearBtn).addEventListener('click', clearAllItemsClick);
 
     };
 
@@ -97,6 +106,46 @@ const App = (function(ItemCtrl, UICtrl) {
         UICtrl.clearEditState();
         
         e.preventDefault();
+    }
+
+    // Delete item submit
+    const itemDeleteSubmit = function(e) {
+        // Get current item
+        const currentItem = ItemCtrl.getCurrentItem();
+
+        // Delete from data structure 
+        ItemCtrl.deleteItem(currentItem.id);
+
+        // Delete from UI
+        UICtrl.deleteListItem(currentItem.id);
+
+        //Get total calories
+        const totalCalories = ItemCtrl.getTotalCalories();
+
+        //Add totalCalories to UI
+        UICtrl.showTotalCalories(totalCalories);
+
+        UICtrl.clearEditState();
+
+        e.preventDefault();
+    }
+
+    // Clearitems event
+    const clearAllItemsClick = function() {
+        // Delete all items from data structur
+        ItemCtrl.clearAllItems();
+
+        // Delete from UI
+        UICtrl.deleteListItem(currentItem.id);
+
+        //Get total calories
+        const totalCalories = ItemCtrl.getTotalCalories();
+
+        // Remove from UI
+        UICtrl.removeItems();
+
+        // Hide Ul
+        UICtrl.hideList();
     }
 
     // Public methods

@@ -68,10 +68,25 @@ const ItemCtrl = (function() {
             });
             return found;
         },
+        deleteItem: function(id) { // from data structure
+            //Get ids
+            const ids = data.items.map((item) => {
+                return item.id // return array of ids
+            });
+
+            // Get index
+            const index = ids.indexOf(id);
+
+            //Remove item 
+            data.items.splice(index, 1);
+        },
+        clearAllItems: function() {
+            data.items = [];
+        },
         setCurrentItem: function (item) {
             data.currentItem = item;
         },
-        getCurrentItem: function () {
+        getCurrentItem: function () { // populate currentItem around the app
             return data.currentItem;
         },
         getTotalCalories: function () {
