@@ -1,12 +1,12 @@
+```
 # Simple Calorie Tracker
+```
 
 ## Technologies used:
-```
-HTML
-```
-```
-CSS
-```
-```
-JavaScript
-```
+
+* HTML
+
+* CSS
+
+* JavaScript
+
