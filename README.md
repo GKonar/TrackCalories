@@ -1,6 +1,6 @@
 # Simple Calorie Tracker
 
-Technologie used:
+## Technologie used:
 ```
 HTML
 ```
