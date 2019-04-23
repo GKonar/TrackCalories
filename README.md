@@ -1,5 +1,5 @@
 ```
-# Simple Calorie Tracker
+#Simple Calorie Tracker
 ```
 
 ## Technologies used:
